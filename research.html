@@ -45,14 +45,51 @@
     }
 
     .page-hero {
-      padding: 24px 7vw 86px;
-      background:
-        linear-gradient(rgba(248,246,240,0.90), rgba(248,246,240,0.95)),
-        url("logo.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: right center;
-    }
+  position: relative;
+  overflow: hidden;
+  padding: 24px 7vw 86px;
+  background: linear-gradient(
+    rgba(248,246,240,0.88),
+    rgba(248,246,240,0.93)
+  );
+}
+
+/* Background video */
+.page-hero video.hero-bg {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 42%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Make sure text sits above video */
+.page-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+    <section class="page-hero">
+
+  <video class="hero-bg"
+         autoplay
+         muted
+         loop
+         playsinline>
+    <source src="videos/new_moth_screen_animation.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+      ...
+  </div>
+
+</section>
 
     .navbar {
       display: flex;
