@@ -45,68 +45,59 @@
     }
 
     .page-hero {
-  position: relative;
-  overflow: hidden;
-  padding: 24px 7vw 86px;
-  background: linear-gradient(
-    rgba(248,246,240,0.88),
-    rgba(248,246,240,0.93)
-  );
-}
+      position: relative;
+      overflow: hidden;
+      padding: 30px 7vw 76px;
+      background: linear-gradient(
+        rgba(248,246,240,0.88),
+        rgba(248,246,240,0.94)
+      );
+    }
 
-/* Background video */
-.page-hero video.hero-bg {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 42%;
-  max-width: 600px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: 0;
-}
+    .page-hero video.hero-bg {
+      position: absolute;
+      top: 56%;
+      right: 5%;
+      transform: translateY(-50%);
+      width: min(38vw, 520px);
+      height: auto;
+      object-fit: contain;
+      opacity: 0.55;
+      filter: brightness(1.1) contrast(0.9);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-/* Make sure text sits above video */
-.page-hero > * {
-  position: relative;
-  z-index: 2;
-}
-
-    <section class="page-hero">
-
-  <video class="hero-bg"
-         autoplay
-         muted
-         loop
-         playsinline>
-    <source src="videos/new_moth_screen_animation.mp4" type="video/mp4">
-  </video>
-
-  <div class="hero-content">
-      ...
-  </div>
-
-</section>
+    .page-hero > * {
+      position: relative;
+      z-index: 2;
+    }
 
     .navbar {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      margin-bottom: 78px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .brand {
+      display: flex;
+      justify-content: center;
+      width: 100%;
     }
 
     .brand img {
-      height: 500px;
+      height: 360px;
       width: auto;
       display: block;
     }
 
     .nav-links {
       display: flex;
+      justify-content: center;
       gap: 42px;
+      margin-top: -18px;
       font-size: 0.88rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -124,13 +115,13 @@
       letter-spacing: 0.18em;
       font-size: 0.9rem;
       font-weight: 700;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .page-hero h1 {
       font-size: clamp(3rem, 6vw, 5.7rem);
       max-width: 820px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero-intro {
@@ -241,13 +232,23 @@
     }
 
     @media (max-width: 900px) {
-      .brand img {
-        height: 90px;
+      .page-hero {
+        padding: 26px 6vw 70px;
       }
 
-      .navbar {
-        align-items: flex-start;
-        gap: 24px;
+      .brand img {
+        height: 240px;
+      }
+
+      .nav-links {
+        margin-top: -8px;
+      }
+
+      .page-hero video.hero-bg {
+        opacity: 0.28;
+        width: 70vw;
+        right: -18vw;
+        top: 62%;
       }
 
       .research-section,
@@ -270,12 +271,8 @@
     }
 
     @media (max-width: 560px) {
-      .page-hero {
-        padding: 26px 6vw 70px;
-      }
-
-      .navbar {
-        flex-direction: column;
+      .brand img {
+        height: 190px;
       }
 
       .nav-links {
@@ -297,6 +294,11 @@
 <body>
 
   <header class="page-hero">
+
+    <video class="hero-bg" autoplay muted loop playsinline>
+      <source src="videos/new_moth_screen_animation.mp4" type="video/mp4" />
+    </video>
+
     <nav class="navbar">
       <a href="index.html" class="brand">
         <img src="logo.png" alt="Mansi Mungee logo" />
@@ -310,6 +312,7 @@
     </nav>
 
     <p class="eyebrow">Research</p>
+
     <h1>Insect biodiversity, traits and movement across changing landscapes.</h1>
 
     <p class="hero-intro">
@@ -317,6 +320,7 @@
       computational methods to study insects across scales: from wing traits and
       colour patterns to aerial movement observed by weather radar.
     </p>
+
   </header>
 
   <main>
