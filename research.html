@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research | Mansi Mungee</title>
+
+  <style>
+    :root {
+      --deep-teal: #003f4c;
+      --teal: #006b78;
+      --soft-teal: #d9eef0;
+      --olive: #556b3f;
+      --sage: #9aa88d;
+      --cream: #f8f6f0;
+      --mist: #edf1ee;
+      --text: #10242b;
+      --muted: #5c6b6f;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--deep-teal);
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page-hero {
+      padding: 24px 7vw 86px;
+      background:
+        linear-gradient(rgba(248,246,240,0.90), rgba(248,246,240,0.95)),
+        url("logo.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right center;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 78px;
+    }
+
+    .brand img {
+      height: 150px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 42px;
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(3rem, 6vw, 5.7rem);
+      max-width: 820px;
+      margin-bottom: 28px;
+    }
+
+    .hero-intro {
+      max-width: 760px;
+      color: #26383d;
+      font-size: 1.15rem;
+    }
+
+    .research-section {
+      padding: 86px 7vw;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 64px;
+      align-items: center;
+      border-top: 1px solid rgba(0, 63, 76, 0.12);
+    }
+
+    .research-section:nth-child(even) {
+      background: var(--white);
+    }
+
+    .research-section:nth-child(odd) {
+      background: var(--cream);
+    }
+
+    .research-section.reverse .research-text {
+      order: 2;
+    }
+
+    .research-section.reverse .research-media {
+      order: 1;
+    }
+
+    .research-text h2 {
+      font-size: clamp(2rem, 3vw, 3.1rem);
+      margin-bottom: 24px;
+    }
+
+    .research-text p {
+      max-width: 620px;
+      color: #27393d;
+      font-size: 1.03rem;
+      margin-bottom: 18px;
+    }
+
+    .research-media {
+      display: grid;
+      gap: 18px;
+    }
+
+    .research-media img,
+    .research-media video {
+      width: 100%;
+      display: block;
+      border-radius: 22px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.13);
+      background: var(--mist);
+    }
+
+    .media-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .media-pair img {
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .tagline {
+      margin-top: 26px;
+      display: inline-block;
+      color: var(--deep-teal);
+      border-left: 4px solid var(--teal);
+      padding-left: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .summary-strip {
+      padding: 66px 7vw;
+      background: var(--mist);
+      text-align: center;
+    }
+
+    .summary-strip h2 {
+      font-size: clamp(2rem, 3vw, 3.4rem);
+      margin-bottom: 22px;
+    }
+
+    .summary-strip p {
+      max-width: 780px;
+      margin: 0 auto;
+      color: #27393d;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #003f4c, #006b78);
+      color: white;
+      padding: 28px 7vw;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .brand img {
+        height: 90px;
+      }
+
+      .navbar {
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .research-section,
+      .research-section.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .research-section.reverse .research-text,
+      .research-section.reverse .research-media {
+        order: initial;
+      }
+
+      .media-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .media-pair img {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-hero {
+        padding: 26px 6vw 70px;
+      }
+
+      .navbar {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 24px;
+        font-size: 0.78rem;
+      }
+
+      .page-hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .research-section {
+        padding: 64px 6vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="page-hero">
+    <nav class="navbar">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Mansi Mungee logo" />
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <p class="eyebrow">Research</p>
+    <h1>Insect biodiversity, traits and movement across changing landscapes.</h1>
+
+    <p class="hero-intro">
+      My research combines field ecology, imaging, morphology, remote sensing and
+      computational methods to study insects across scales: from wing traits and
+      colour patterns to aerial movement observed by weather radar.
+    </p>
+  </header>
+
+  <main>
+
+    <section class="research-section">
+      <div class="research-text">
+        <p class="eyebrow">Arunachal moth systems</p>
+        <h2>Moth diversity, colour and community assembly</h2>
+        <p>
+          A major part of my work focuses on moth communities in Arunachal Pradesh,
+          especially along strong elevational and climatic gradients. I study how
+          diversity, colour patterns, wing traits and ecological strategies vary
+          across landscapes and among lineages.
+        </p>
+        <p>
+          These projects combine long-term field collections with community ecology,
+          phylogenetics, trait measurement and comparative analyses. The broader
+          goal is to understand how environmental filtering, biotic interactions
+          and evolutionary history shape insect communities.
+        </p>
+        <span class="tagline">Community ecology · Colour · Phylogenetics</span>
+      </div>
+
+      <div class="research-media media-pair">
+        <img src="image/research/moths.jpg" alt="Moth diversity from Arunachal Pradesh" />
+        <img src="image/research/moth_schematic.jpg" alt="Moth research schematic" />
+      </div>
+    </section>
+
+    <section class="research-section reverse">
+      <div class="research-text">
+        <p class="eyebrow">Computational ecology</p>
+        <h2>Image processing, feature extraction and AI</h2>
+        <p>
+          I use image processing and machine-learning approaches to extract
+          biological information from large image datasets. These methods help
+          quantify colour, pattern, shape and other visual features that are
+          difficult to measure manually at scale.
+        </p>
+        <p>
+          This work is especially useful for building reproducible trait pipelines,
+          comparing thousands of individuals and linking image-derived features to
+          ecological gradients. I am interested in developing tools that make insect
+          monitoring faster, more scalable and more objective.
+        </p>
+        <span class="tagline">Computer vision · Feature extraction · AI</span>
+      </div>
+
+      <div class="research-media">
+        <img src="image/research/image_processing.jpg" alt="Image processing and feature extraction workflow" />
+      </div>
+    </section>
+
+    <section class="research-section">
+      <div class="research-text">
+        <p class="eyebrow">Traits and morphology</p>
+        <h2>Morphological and colorimetric traits</h2>
+        <p>
+          I measure insect morphology and colour to understand how traits are linked
+          to ecology, behaviour and environmental conditions. These measurements
+          include wing geometry, body size, pigmentation, reflectance and pattern
+          structure.
+        </p>
+        <p>
+          Photogrammetry and standardized imaging allow traits to be measured
+          consistently across individuals and species. These trait datasets can then
+          be used to test hypotheses about flight, thermoregulation, crypsis,
+          elevation and evolutionary diversification.
+        </p>
+        <span class="tagline">Morphology · Colour metrics · Trait ecology</span>
+      </div>
+
+      <div class="research-media">
+        <img src="image/research/photogrammetry.JPG" alt="Photogrammetry setup for measuring insect traits" />
+      </div>
+    </section>
+
+    <section class="research-section reverse">
+      <div class="research-text">
+        <p class="eyebrow">Radar ecology</p>
+        <h2>Weather radar and aerial insect abundance</h2>
+        <p>
+          Weather radar networks can detect large-scale biological movement in the
+          atmosphere, including insects, birds and other aerial organisms. My radar
+          work uses these systems to quantify insect abundance and movement across
+          space and time.
+        </p>
+        <p>
+          In the UK, this approach has been used to estimate aerial insect biomass
+          and examine broad-scale temporal and spatial variation. Such work shows
+          how meteorological infrastructure can be repurposed for biodiversity
+          monitoring at national scales.
+        </p>
+        <span class="tagline">Weather radar · Aerial biomass · Monitoring</span>
+      </div>
+
+      <div class="research-media">
+        <img src="image/research/uk_map_insect_abundance.png" alt="UK map of insect abundance estimated from radar" />
+      </div>
+    </section>
+
+    <section class="research-section">
+      <div class="research-text">
+        <p class="eyebrow">India radar work</p>
+        <h2>Nocturnal insect emergence near Bhopal</h2>
+        <p>
+          I am developing radar-based methods to study aerial insect movement in
+          India using weather radar observations near Bhopal. The Silkheda radar
+          captures the dusk emergence of nocturnal insects over agricultural fields,
+          providing a rare view of biological activity in the lower atmosphere.
+        </p>
+        <p>
+          This work aims to identify when, where and under what atmospheric
+          conditions insects enter the airspace. It also provides a foundation for
+          building long-term insect monitoring systems using existing radar networks.
+        </p>
+        <span class="tagline">Silkheda radar · Dusk emergence · Bhopal</span>
+      </div>
+
+      <div class="research-media">
+        <video controls muted loop playsinline>
+          <source src="image/research/Silkheda_animation.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section class="research-section reverse">
+      <div class="research-text">
+        <p class="eyebrow">Monsoon and meteorology</p>
+        <h2>Indian weather radar, monsoon dynamics and aerial movement</h2>
+        <p>
+          India’s weather radar network provides a major opportunity to study
+          ecological movement in relation to monsoon meteorology. I am interested
+          in how wind fields, rainfall, atmospheric stability and seasonal weather
+          systems affect the timing and intensity of aerial movement.
+        </p>
+        <p>
+          This research connects radar ecology with atmospheric science by asking
+          how biological movement is structured by the physical environment. It can
+          help build a clearer picture of insect activity across agricultural,
+          forested and urban landscapes in India.
+        </p>
+        <span class="tagline">Monsoon · Meteorology · Radar networks</span>
+      </div>
+
+      <div class="research-media media-pair">
+        <img src="image/research/india_weather_radar_map.tiff" alt="Map of Indian weather radar network" />
+        <img src="image/research/india_atmos_effect_on_aerial_movement.tiff" alt="Atmospheric effects on aerial movement in India" />
+      </div>
+    </section>
+
+    <section class="summary-strip">
+      <h2>Across scales, from wings to weather systems.</h2>
+      <p>
+        Together, these projects ask how insects are shaped by their environments
+        and how new technologies can make their hidden diversity and movement more
+        visible.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Mansi Mungee</p>
+    <p>Ecology · Remote Sensing · AI</p>
+  </footer>
+
+</body>
+</html>
