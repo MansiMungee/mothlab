@@ -671,6 +671,90 @@
   </style>
 </head>
 
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="">
+</div>
+
+  /* ---------- LIGHTBOX ---------- */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s ease;
+    z-index:9999;
+}
+
+.lightbox.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.lightbox img{
+    max-width:92vw;
+    max-height:92vh;
+    object-fit:contain;
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    border-radius:8px;
+}
+
+.lightbox .close{
+    position:absolute;
+    top:30px;
+    right:45px;
+    color:white;
+    font-size:48px;
+    cursor:pointer;
+    font-family:Arial;
+    font-weight:300;
+}
+
+.clickable{
+    cursor:zoom-in;
+    transition:.35s ease;
+}
+
+.clickable:hover{
+    transform:scale(1.015);
+}
+  <script>
+
+const lightbox=document.getElementById("lightbox");
+const lightboxImg=document.getElementById("lightbox-img");
+
+document.querySelectorAll("img").forEach(img=>{
+
+    img.classList.add("clickable");
+
+    img.addEventListener("click",function(){
+
+        lightbox.classList.add("show");
+        lightboxImg.src=this.src;
+
+    });
+
+});
+
+lightbox.addEventListener("click",function(){
+
+    lightbox.classList.remove("show");
+
+});
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape")
+        lightbox.classList.remove("show");
+
+});
+
+</script>
 <body>
 
   <header class="hero">
