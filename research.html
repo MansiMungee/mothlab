@@ -490,7 +490,7 @@
 }
 
 .publication-list {
-  max-width: 980px;
+  max-width: 1050px;
   margin: 0 auto;
   display: grid;
   gap: 22px;
@@ -525,15 +525,9 @@
   margin-bottom: 12px;
 }
 
-.publication-authors {
-  color: var(--soft);
-  font-size: 1rem;
-  margin-bottom: 8px;
-}
-
 .publication-journal {
   color: var(--muted);
-  font-size: 0.98rem;
+  font-size: 1rem;
   font-style: italic;
   margin-bottom: 18px;
 }
@@ -556,6 +550,16 @@
 
 .publication-links a:hover {
   color: var(--gold);
+}
+
+.publication-loading {
+  text-align: center;
+  color: var(--muted);
+}
+
+.scholar-link {
+  text-align: center;
+  margin-top: 42px;
 }
     footer {
       padding: 32px 7vw;
@@ -1026,6 +1030,26 @@
       <a href="contact.html" class="btn">Get in touch →</a>
     </section>
 
+    <section class="publications" id="publications">
+  <div class="section-header">
+    <p class="eyebrow">Publications</p>
+    <h2>Selected publications.</h2>
+    <p>
+      Automatically updated from my public ORCID record.
+    </p>
+  </div>
+
+  <div id="publication-list" class="publication-list">
+    <p class="publication-loading">Loading publications...</p>
+  </div>
+
+  <div class="scholar-link">
+    <a href="https://scholar.google.com/" target="_blank" class="btn">
+      View Google Scholar →
+    </a>
+  </div>
+</section>
+    
   </main>
 
   <footer>
@@ -1038,78 +1062,96 @@
     <img id="lightbox-img" src="" alt="" />
     <div id="lightbox-caption" class="lightbox-caption"></div>
   </div>
-
-  <script>
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const lightboxCaption = document.getElementById("lightbox-caption");
-    const closeBtn = document.querySelector(".lightbox .close");
-
-    document.querySelectorAll("img:not(.no-lightbox)").forEach((img) => {
-      img.classList.add("lightbox-enabled");
-
-      img.addEventListener("click", () => {
-        lightbox.classList.add("show");
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt || "";
-        lightboxCaption.textContent = img.alt || "";
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove("show");
-      lightboxImg.src = "";
-      lightboxCaption.textContent = "";
-    }
-
-    closeBtn.addEventListener("click", closeLightbox);
-
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeLightbox();
-      }
-    });
-  </script>
 <script>
-  async function loadPublications() {
+  async function loadORCIDPublications() {
+    const orcidId = "YOUR-ORCID-ID-HERE";
     const container = document.getElementById("publication-list");
 
+    const url = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+
     try {
-      const response = await fetch("publications.json");
-      const publications = await response.json();
+      const response = await fetch(url, {
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not fetch ORCID publications");
+      }
+
+      const data = await response.json();
+      const groups = data.group || [];
+
+      const publications = groups.map(group => {
+        const summary = group["work-summary"]?.[0];
+
+        const title =
+          summary?.title?.title?.value ||
+          "Untitled publication";
+
+        const year =
+          summary?.["publication-date"]?.year?.value ||
+          "Year unknown";
+
+        const journal =
+          summary?.["journal-title"]?.value ||
+          summary?.type ||
+          "Publication";
+
+        const externalIds =
+          summary?.["external-ids"]?.["external-id"] || [];
+
+        const doiObj = externalIds.find(id =>
+          id["external-id-type"] === "doi"
+        );
+
+        const doi = doiObj
+          ? `https://doi.org/${doiObj["external-id-value"]}`
+          : "";
+
+        const orcidWorkUrl =
+          summary?.url?.value ||
+          `https://orcid.org/${orcidId}`;
+
+        return {
+          title,
+          year,
+          journal,
+          doi,
+          orcidWorkUrl
+        };
+      });
+
+      publications.sort((a, b) => {
+        const yearA = parseInt(a.year) || 0;
+        const yearB = parseInt(b.year) || 0;
+        return yearB - yearA;
+      });
 
       container.innerHTML = publications.map(pub => `
         <article class="publication-card">
           <div class="publication-year">${pub.year}</div>
           <h3 class="publication-title">${pub.title}</h3>
-          <p class="publication-authors">${pub.authors}</p>
           <p class="publication-journal">${pub.journal}</p>
 
           <div class="publication-links">
             ${pub.doi ? `<a href="${pub.doi}" target="_blank">DOI</a>` : ""}
-            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">PDF</a>` : ""}
-            ${pub.code ? `<a href="${pub.code}" target="_blank">Code</a>` : ""}
-            ${pub.data ? `<a href="${pub.data}" target="_blank">Data</a>` : ""}
+            <a href="${pub.orcidWorkUrl}" target="_blank">ORCID</a>
           </div>
         </article>
       `).join("");
 
     } catch (error) {
       container.innerHTML = `
-        <p style="color: var(--muted); text-align: center;">
-          Publications will appear here soon.
+        <p class="publication-loading">
+          Publications could not be loaded automatically. Please visit my ORCID or Google Scholar profile.
         </p>
       `;
     }
   }
 
-  loadPublications();
+  loadORCIDPublications();
 </script>
 </body>
 </html>
