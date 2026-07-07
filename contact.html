@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact · MOTH Lab</title>
+
+  <style>
+    :root {
+      --black: #050808;
+      --night: #081111;
+      --deep: #0b1d1f;
+      --teal: #4fa3a5;
+      --gold: #c6a66b;
+      --cream: #f4ead8;
+      --soft: #d9d0bd;
+      --muted: #9ca7a4;
+      --line: rgba(198,166,107,0.34);
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--soft);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 22px;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.05;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--cream);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      color: var(--gold);
+      gap: 20px;
+    }
+
+    .hero {
+      min-height: 92vh;
+      padding: 34px 7vw 70px;
+      background:
+        linear-gradient(90deg, rgba(5,8,8,0.98) 0%, rgba(5,8,8,0.75) 45%, rgba(5,8,8,0.28) 100%),
+        linear-gradient(180deg, rgba(5,8,8,0.12), rgba(5,8,8,0.96)),
+        url("image/research/research11.jpg");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(79,163,165,0.12), transparent 28%),
+        radial-gradient(circle at 80% 70%, rgba(198,166,107,0.10), transparent 30%);
+      pointer-events: none;
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      margin-bottom: 90px;
+    }
+
+    .nav-left,
+    .nav-right {
+      padding-top: 26px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--cream);
+    }
+
+    .nav-left {
+      justify-self: start;
+    }
+
+    .nav-right {
+      justify-self: end;
+    }
+
+    .nav-left a,
+    .nav-right a {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 7px;
+    }
+
+    .nav-left a:hover,
+    .nav-right a:hover {
+      color: var(--gold);
+    }
+
+    .brand {
+      text-align: center;
+    }
+
+    .brand img {
+      width: min(420px, 40vw);
+      margin: 0 auto 10px;
+    }
+
+    .brand-subtitle {
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 850px;
+      margin-top: 40px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 7vw, 7.6rem);
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      max-width: 660px;
+      color: rgba(244,234,216,0.82);
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+    }
+
+    .contact-section {
+      padding: 100px 7vw;
+      background: var(--night);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 70px;
+      align-items: start;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .contact-intro h2 {
+      font-size: clamp(2.5rem, 4.3vw, 5rem);
+      margin-bottom: 28px;
+    }
+
+    .contact-intro p {
+      color: var(--muted);
+      margin-bottom: 22px;
+      max-width: 650px;
+    }
+
+    .contact-card {
+      border: 1px solid var(--line);
+      background: rgba(5,8,8,0.62);
+      padding: 34px;
+      margin-bottom: 22px;
+    }
+
+    .contact-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .contact-card a:hover {
+      color: var(--gold);
+    }
+
+    .opportunities {
+      padding: 110px 7vw;
+      background: var(--deep);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .opportunities::before {
+      content: "JOIN US";
+      position: absolute;
+      right: -2vw;
+      top: 38px;
+      color: rgba(244,234,216,0.035);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13vw;
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+    }
+
+    .opportunities-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 950px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .opportunities h2 {
+      font-size: clamp(2.8rem, 5vw, 6rem);
+      margin-bottom: 28px;
+    }
+
+    .opportunities p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .closing {
+      min-height: 460px;
+      padding: 100px 7vw;
+      background:
+        linear-gradient(rgba(5,8,8,0.42), rgba(5,8,8,0.94)),
+        url("image/research/research12.jpg");
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .closing h2 {
+      font-size: clamp(3rem, 6vw, 7rem);
+      max-width: 1050px;
+      margin: 0 auto 28px;
+    }
+
+    .closing p {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      color: rgba(244,234,216,0.82);
+      font-size: 1.08rem;
+    }
+
+    footer {
+      padding: 32px 7vw;
+      background: #030505;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1000px) {
+      .navbar {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        text-align: center;
+      }
+
+      .nav-left,
+      .nav-right {
+        justify-self: center;
+        padding-top: 0;
+      }
+
+      .nav-left {
+        order: 2;
+      }
+
+      .brand {
+        order: 1;
+      }
+
+      .nav-right {
+        order: 3;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding: 26px 6vw 64px;
+      }
+
+      .brand img {
+        width: 260px;
+      }
+
+      .brand-subtitle {
+        font-size: 0.62rem;
+      }
+
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+
+      .contact-section,
+      .opportunities,
+      .closing {
+        padding-left: 6vw;
+        padding-right: 6vw;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Home</a>
+      </div>
+
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="MOTH Lab logo" />
+        <div class="brand-subtitle">Insects · Ecology · Movement</div>
+      </a>
+
+      <div class="nav-right">
+        <a href="research.html">Research</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow">Contact MOTH Lab</p>
+      <h1>Let’s talk about insects, movement and change.</h1>
+      <p>
+        We welcome conversations with students, researchers, conservation
+        practitioners, remote sensing scientists, artists and anyone curious about
+        the hidden life of the air.
+      </p>
+      <a href="mailto:YOUR_EMAIL_HERE" class="btn">Email Mansi →</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <p class="eyebrow">Get in touch</p>
+          <h2>MOTH Lab is based at Azim Premji University, Bhopal.</h2>
+          <p>
+            For research conversations, student enquiries, internships,
+            collaborations or postdoctoral funding ideas, please reach out by email.
+          </p>
+          <a href="https://azimpremjiuniversity.edu.in/people/mansi-mungee" target="_blank" class="btn">
+            University profile →
+          </a>
+        </div>
+
+        <div>
+          <div class="contact-card">
+            <h3>Email</h3>
+            <p>
+              <a href="mailto:YOUR_EMAIL_HERE">YOUR_EMAIL_HERE</a>
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Phone</h3>
+            <p>
+              <a href="tel:+919902125621">099021 25621</a>
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Address</h3>
+            <p>
+              Azim Premji University<br />
+              Khasra number 40 and 51,<br />
+              Bhopal–Vidisha Bypass Road,<br />
+              Village Kanhasaiya, Tehsil Huzur,<br />
+              Bhopal 462022,<br />
+              Madhya Pradesh 462028, India
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="opportunities">
+      <div class="opportunities-inner">
+        <p class="eyebrow">Opportunities</p>
+        <h2>Interested in joining MOTH Lab?</h2>
+        <p>
+          I am always happy to hear from motivated students interested in insects,
+          ecology, remote sensing, image processing, artificial intelligence,
+          biodiversity monitoring or field-based natural history.
+        </p>
+        <p>
+          I particularly welcome enquiries from potential interns who can commit
+          for six months or more. Longer internships are especially useful because
+          many of our projects involve fieldwork, image organisation, data cleaning,
+          computational workflows and careful ecological interpretation.
+        </p>
+        <p>
+          I am also keen to hear from potential postdoctoral researchers interested
+          in co-developing ideas and applying for external funding together.
+        </p>
+        <a href="mailto:mansi.mungee@apu.edu.in" class="btn">Write to me →</a>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">Collaborate with us</p>
+      <h2>Small wings. Large questions.</h2>
+      <p>
+        MOTH Lab brings together field ecology, natural history, remote sensing,
+        computation and conservation to study insects across scales.
+      </p>
+      <a href="research.html" class="btn">Explore research →</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 MOTH Lab</p>
+    <p>Insects · Ecology · Movement</p>
+  </footer>
+
+</body>
+</html>
