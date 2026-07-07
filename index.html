@@ -556,6 +556,64 @@
       text-transform: uppercase;
     }
 
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 9999;
+      padding: 32px;
+    }
+
+    .lightbox.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      border-radius: 8px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 28px;
+      right: 42px;
+      color: white;
+      font-size: 48px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: 300;
+      line-height: 1;
+      z-index: 10000;
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      max-width: 80vw;
+      color: rgba(244,234,216,0.78);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    img.lightbox-enabled {
+      cursor: zoom-in;
+    }
+
     @media (max-width: 1000px) {
       .navbar {
         grid-template-columns: 1fr;
@@ -667,94 +725,16 @@
       footer {
         flex-direction: column;
       }
+
+      .lightbox .close {
+        top: 18px;
+        right: 24px;
+        font-size: 40px;
+      }
     }
   </style>
 </head>
 
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img id="lightbox-img" src="">
-</div>
-
-  /* ---------- LIGHTBOX ---------- */
-
-.lightbox{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.95);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    opacity:0;
-    visibility:hidden;
-    transition:.25s ease;
-    z-index:9999;
-}
-
-.lightbox.show{
-    opacity:1;
-    visibility:visible;
-}
-
-.lightbox img{
-    max-width:92vw;
-    max-height:92vh;
-    object-fit:contain;
-    box-shadow:0 30px 80px rgba(0,0,0,.6);
-    border-radius:8px;
-}
-
-.lightbox .close{
-    position:absolute;
-    top:30px;
-    right:45px;
-    color:white;
-    font-size:48px;
-    cursor:pointer;
-    font-family:Arial;
-    font-weight:300;
-}
-
-.clickable{
-    cursor:zoom-in;
-    transition:.35s ease;
-}
-
-.clickable:hover{
-    transform:scale(1.015);
-}
-  <script>
-
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightbox-img");
-
-document.querySelectorAll("img").forEach(img=>{
-
-    img.classList.add("clickable");
-
-    img.addEventListener("click",function(){
-
-        lightbox.classList.add("show");
-        lightboxImg.src=this.src;
-
-    });
-
-});
-
-lightbox.addEventListener("click",function(){
-
-    lightbox.classList.remove("show");
-
-});
-
-document.addEventListener("keydown",function(e){
-
-    if(e.key==="Escape")
-        lightbox.classList.remove("show");
-
-});
-
-</script>
 <body>
 
   <header class="hero">
@@ -764,7 +744,7 @@ document.addEventListener("keydown",function(e){
       </div>
 
       <a href="index.html" class="brand">
-        <img src="logo.png" alt="MOTH Lab logo" />
+        <img src="logo.png" alt="MOTH Lab logo" class="no-lightbox" />
         <div class="brand-title">MOTH LAB</div>
         <div class="brand-subtitle">Insects · Movement · Environments</div>
       </a>
@@ -937,7 +917,7 @@ document.addEventListener("keydown",function(e){
 
       <div class="bio-text">
         <div class="bio-heading">
-          <img src="logo.png" alt="MOTH Lab logo" />
+          <img src="logo.png" alt="MOTH Lab logo" class="no-lightbox" />
           <h2>Mansi Mungee & MOTH Lab</h2>
         </div>
 
@@ -1043,6 +1023,50 @@ document.addEventListener("keydown",function(e){
     <p>© 2026 MOTH Lab</p>
     <p>Insects · Movement · Environments</p>
   </footer>
+
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="" alt="" />
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeBtn = document.querySelector(".lightbox .close");
+
+    document.querySelectorAll("img:not(.no-lightbox)").forEach((img) => {
+      img.classList.add("lightbox-enabled");
+
+      img.addEventListener("click", () => {
+        lightbox.classList.add("show");
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || "";
+        lightboxCaption.textContent = img.alt || "";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+      lightboxImg.src = "";
+      lightboxCaption.textContent = "";
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
