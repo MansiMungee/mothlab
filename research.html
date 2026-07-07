@@ -483,7 +483,80 @@
       color: rgba(244,234,216,0.82);
       font-size: 1.08rem;
     }
+.publications {
+  padding: 96px 7vw;
+  background: var(--black);
+  border-top: 1px solid var(--line);
+}
 
+.publication-list {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  gap: 22px;
+}
+
+.publication-card {
+  border: 1px solid var(--line);
+  background: rgba(8,17,17,0.82);
+  padding: 30px;
+  transition: 0.25s ease;
+}
+
+.publication-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+
+.publication-year {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.publication-title {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--cream);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.publication-authors {
+  color: var(--soft);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.publication-journal {
+  color: var(--muted);
+  font-size: 0.98rem;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.publication-links a {
+  color: var(--cream);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.publication-links a:hover {
+  color: var(--gold);
+}
     footer {
       padding: 32px 7vw;
       background: #030505;
@@ -690,7 +763,20 @@
       “Some ecological patterns are too small to see, until we change the scale of observation.”
     </div>
   </header>
+<section class="publications" id="publications">
+  <div class="section-header">
+    <p class="eyebrow">Publications</p>
+    <h2>Selected research outputs.</h2>
+    <p>
+      Papers, preprints and collaborative work from MOTH Lab and related research.
+    </p>
+  </div>
 
+  <div id="publication-list" class="publication-list"></div>
+</section>
+
+
+  
   <main>
 
     <section class="intro-band">
@@ -990,6 +1076,40 @@
       }
     });
   </script>
+<script>
+  async function loadPublications() {
+    const container = document.getElementById("publication-list");
 
+    try {
+      const response = await fetch("publications.json");
+      const publications = await response.json();
+
+      container.innerHTML = publications.map(pub => `
+        <article class="publication-card">
+          <div class="publication-year">${pub.year}</div>
+          <h3 class="publication-title">${pub.title}</h3>
+          <p class="publication-authors">${pub.authors}</p>
+          <p class="publication-journal">${pub.journal}</p>
+
+          <div class="publication-links">
+            ${pub.doi ? `<a href="${pub.doi}" target="_blank">DOI</a>` : ""}
+            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank">PDF</a>` : ""}
+            ${pub.code ? `<a href="${pub.code}" target="_blank">Code</a>` : ""}
+            ${pub.data ? `<a href="${pub.data}" target="_blank">Data</a>` : ""}
+          </div>
+        </article>
+      `).join("");
+
+    } catch (error) {
+      container.innerHTML = `
+        <p style="color: var(--muted); text-align: center;">
+          Publications will appear here soon.
+        </p>
+      `;
+    }
+  }
+
+  loadPublications();
+</script>
 </body>
 </html>
