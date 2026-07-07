@@ -143,16 +143,32 @@
       color: var(--gold);
     }
 
-    .post-content a {
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid var(--gold);
+  .post {
+  border: 1px solid var(--line);
+  background: rgba(5,8,8,0.62);
+  display: block;
   transition: 0.25s ease;
 }
 
-.post-content a:hover {
-  color: var(--cream);
-  border-bottom-color: var(--cream);
+.post:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+.post:hover img {
+  opacity: 1;
+  transform: scale(1.025);
+}
+
+.post img {
+  height: 210px;
+  object-fit: cover;
+  opacity: 0.88;
+  transition: 0.35s ease;
+}
+
+.post-content {
+  padding: 24px;
 }
     
     .brand {
@@ -1006,79 +1022,71 @@
       </div>
     </section>
 
-    <section class="journal">
-      <div class="journal-layout">
-        <div class="journal-intro">
-          <p class="eyebrow">Latest from MOTH Lab</p>
-          <h2>In the news.</h2>
+<section class="journal">
+  <div class="journal-layout">
+    <div class="journal-intro">
+      <p class="eyebrow">Latest from MOTH Lab</p>
+      <h2>In the news.</h2>
+      <p>
+        Media coverage, documentaries, research stories and public writing on
+        insects, biodiversity, radar ecology, technology and conservation.
+      </p>
+    </div>
+
+    <div class="post-grid">
+
+      <a class="post" href="https://azimpremjiuniversity.edu.in/faculty-research/indias-insects-disappearing-in-plain-sight" target="_blank" rel="noopener noreferrer">
+        <img src="image/homepage/homepage2.jpg" alt="Field notes from MOTH Lab" />
+        <div class="post-content">
+          <span>Article</span>
+          <h3>India’s insects: Disappearing in plain sight?</h3>
           <p>
-            The public voice of MOTH Lab: short pieces from
-            the field, media-coverage, behind-the-scenes notes, research updates, student stories,
-            visual essays and reflections on insects, technology and conservation.
+            A thoughtful feature by Nandita Jayaraj on India’s insect biodiversity,
+            conservation and the urgent need to pay attention to small lives.
           </p>
         </div>
+      </a>
 
-        <div class="post-grid">
-          <article class="post">
-            <img src="image/homepage/homepage2.jpg" alt="Field notes from MOTH Lab" />
-            <div class="post-content">
-              <span>Article</span>
-              <h3>India’s insects: Disappearing in plain sight?</h3>
-              <p>
-                A brilliant coverage by Nandita Jayaraj, who is a Science writer 
-                and Communications Consultant at Azim Premji University.
-              </p>
-            </div>
-          </article>
+      <a class="post" href="https://biodarproject.org/" target="_blank" rel="noopener noreferrer">
+        <img src="image/homepage/homepage8.jpg" alt="Radar ecology story" />
+        <div class="post-content">
+          <span>Research</span>
+          <h3>What radar can reveal about insect movement</h3>
+          <p>
+            BioDAR is a team of brilliant, motivated scientists creating a step-change
+            in the way we monitor biodiversity using weather radar and atmospheric data.
+          </p>
+        </div>
+      </a>
 
-          <article class="post">
-            <img src="image/homepage/homepage8.jpg" alt="Radar ecology story" />
-            <div class="post-content">
-              <span>Research</span>
-              <h3>What radar can reveal about insect movement</h3>
-              <p>
-                Read more about <a href="https://biodarproject.org/what-is-biodar"
-     target="_blank"
-     rel="noopener noreferrer">
-     BioDAR
-  </a> 
-                - the team of brilliant, motivated scientists
-                creating a step-change in the way we monitor biodiversity.
-              </p>
-            </div>
-          </article>
+      <a class="post" href="https://www.youtube.com/watch?v=u7M7hsfqjQg" target="_blank" rel="noopener noreferrer">
+        <img src="image/homepage/homepage13.jpg" alt="Nocturnes documentary" />
+        <div class="post-content">
+          <span>Documentary</span>
+          <h3>Nocturnes</h3>
+          <p>
+            <em>Nocturnes</em> is an award-winning documentary by Metamorphosis Film Junction
+            following our field research on Himalayan moths in collaboration with IISER Pune.
+          </p>
+        </div>
+      </a>
 
-<article class="post">
-  <img src="image/homepage/homepage13.jpg" alt="Nocturnes documentary" />
-  <div class="post-content">
-    <span>Documentary</span>
-    <h3>Nocturnes</h3>
-    <p>
-      <em>Nocturnes</em> is an award-winning documentary by Metamorphosis Film Junction
-      that follows our field research on Himalayan moths. Filmed over several years
-      in collaboration with IISER Pune, the documentary explores nocturnal biodiversity
-      and the patience, curiosity and dedication behind ecological field research.
-    </p>
+      <a class="post" href="https://www.theguardian.com/environment/2025/oct/27/night-flying-insects-over-uk-in-decline-weather-radar-study-reveals" target="_blank" rel="noopener noreferrer">
+        <img src="image/homepage/homepage14.jpg" alt="Radar ecology and insect movement" />
+        <div class="post-content">
+          <span>Media Coverage</span>
+          <h3>Weather radar reveals insect movement over the UK</h3>
+          <p>
+            Our radar work with team BioDAR used UK Met Office weather radar data
+            to reveal massive aerial insect biomass and concerning declines in
+            night-flying insects.
+          </p>
+        </div>
+      </a>
+
+    </div>
   </div>
-</article>
-
-<article class="post">
-  <img src="image/homepage/homepage14.jpg" alt="Radar ecology and insect movement" />
-  <div class="post-content">
-    <span>Media Coverage</span>
-    <h3>Weather radar reveals insect movement over the UK</h3>
-    <p>
-      Our radar work with team BioDAR used UK Met Office weather radar data to track
-      trillions of insects in the air, revealing massive aerial biomass and concerning
-      declines in night-flying insects. The study was covered by
-      <a href="https://www.theguardian.com/environment/2025/oct/27/night-flying-insects-over-uk-in-decline-weather-radar-study-reveals"
-         target="_blank"
-         rel="noopener noreferrer">
-         The Guardian
-      </a>.
-    </p>
-  </div>
-</article>
+</section>
           
       
         </div>
