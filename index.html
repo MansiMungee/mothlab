@@ -433,7 +433,39 @@
       padding: 8px;
       opacity: 0.92;
     }
+.bio-caption{
+    text-align:center;
+    margin-top:28px;
+}
 
+.bio-caption h3{
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--cream);
+    font-size:1.9rem;
+    margin-bottom:10px;
+}
+
+.bio-caption p{
+    color: var(--muted);
+    font-size:1rem;
+    line-height:1.6;
+    margin-bottom:18px;
+}
+
+.bio-link{
+    color:var(--gold);
+    border-bottom:1px solid var(--gold);
+    padding-bottom:5px;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.78rem;
+    font-weight:700;
+    transition:.25s;
+}
+
+.bio-link:hover{
+    color:var(--cream);
+}
     .bio-heading {
       display: flex;
       align-items: center;
@@ -913,9 +945,28 @@
     </section>
 
     <section class="bio">
-      <div class="bio-photo">
-        <img src="image/homepage/homepage1.jpg" alt="Mansi Mungee" />
-      </div>
+     <div class="bio-photo">
+
+  <img src="image/homepage/homepage1.jpg" alt="Mansi Mungee" />
+
+  <div class="bio-caption">
+    <h3>Mansi Mungee</h3>
+
+    <p>
+      Assistant Professor<br>
+      Azim Premji University
+    </p>
+
+    <a
+      href="https://azimpremjiuniversity.edu.in/people/mansi-mungee"
+      target="_blank"
+      class="bio-link">
+      University Profile →
+    </a>
+
+  </div>
+
+</div>
 
       <div class="bio-text">
         <div class="bio-heading">
