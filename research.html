@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Research | Mansi Mungee</title>
+  <title>Research · MOTH Lab</title>
 
   <style>
     :root {
-      --deep-teal: #003f4c;
-      --teal: #006b78;
-      --soft-teal: #d9eef0;
-      --olive: #556b3f;
-      --sage: #9aa88d;
-      --cream: #f8f6f0;
-      --mist: #edf1ee;
-      --text: #10242b;
-      --muted: #5c6b6f;
+      --black: #050808;
+      --night: #081111;
+      --deep: #0b1d1f;
+      --teal: #4fa3a5;
+      --gold: #c6a66b;
+      --cream: #f4ead8;
+      --soft: #d9d0bd;
+      --muted: #9ca7a4;
+      --line: rgba(198,166,107,0.34);
       --white: #ffffff;
     }
 
@@ -25,267 +25,633 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      background: var(--black);
+      color: var(--soft);
       font-family: "Helvetica Neue", Arial, sans-serif;
-      color: var(--text);
-      background: var(--cream);
-      line-height: 1.7;
+      font-size: 22px;
+      line-height: 1.5;
     }
 
     h1, h2, h3 {
       font-family: Georgia, "Times New Roman", serif;
-      color: var(--deep-teal);
-      font-weight: 500;
-      line-height: 1.15;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.05;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
-    .page-hero {
-      position: relative;
-      overflow: hidden;
-      padding: 30px 7vw 76px;
-      background: linear-gradient(
-        rgba(248,246,240,0.88),
-        rgba(248,246,240,0.94)
-      );
-    }
-
-    .page-hero video.hero-bg {
-      position: absolute;
-      top: 56%;
-      right: 5%;
-      transform: translateY(-50%);
-      width: min(38vw, 520px);
-      height: auto;
-      object-fit: contain;
-      opacity: 0.55;
-      filter: brightness(1.1) contrast(0.9);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .page-hero > * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .navbar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 36px;
-    }
-
-    .brand {
-      display: flex;
-      justify-content: center;
+    img, video {
       width: 100%;
-    }
-
-    .brand img {
-      height: 360px;
-      width: auto;
       display: block;
-    }
-
-    .nav-links {
-      display: flex;
-      justify-content: center;
-      gap: 42px;
-      margin-top: 48px;
-      font-size: 1.28rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .nav-links a:hover {
-      color: var(--teal);
     }
 
     .eyebrow {
-      color: var(--teal);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--cream);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-size: 0.9rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-bottom: 18px;
+      transition: 0.25s ease;
     }
 
-    .page-hero h1 {
-      font-size: clamp(3rem, 6vw, 5.7rem);
-      max-width: 820px;
-      margin-bottom: 24px;
+    .btn:hover {
+      color: var(--gold);
+      gap: 20px;
     }
 
-    .hero-intro {
-      max-width: 760px;
-      color: #26383d;
-      font-size: 1.15rem;
+    .hero {
+      min-height: 100vh;
+      padding: 34px 7vw 70px;
+      background:
+        linear-gradient(90deg, rgba(5,8,8,0.98) 0%, rgba(5,8,8,0.75) 42%, rgba(5,8,8,0.28) 100%),
+        linear-gradient(180deg, rgba(5,8,8,0.12), rgba(5,8,8,0.96)),
+        url("image/research/research1.jpg");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .research-section {
-      padding: 86px 7vw;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(79,163,165,0.12), transparent 28%),
+        radial-gradient(circle at 80% 70%, rgba(198,166,107,0.10), transparent 30%);
+      pointer-events: none;
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 3;
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 64px;
-      align-items: center;
-      border-top: 1px solid rgba(0, 63, 76, 0.12);
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      margin-bottom: 80px;
     }
 
-    .research-section:nth-child(even) {
-      background: var(--white);
+    .nav-left,
+    .nav-right {
+      padding-top: 26px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--cream);
     }
 
-    .research-section:nth-child(odd) {
-      background: var(--cream);
+    .nav-left {
+      justify-self: start;
     }
 
-    .research-section.reverse .research-text {
-      order: 2;
+    .nav-right {
+      justify-self: end;
     }
 
-    .research-section.reverse .research-media {
-      order: 1;
+    .nav-left a,
+    .nav-right a {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 7px;
     }
 
-    .research-text h2 {
-      font-size: clamp(2rem, 3vw, 3.1rem);
-      margin-bottom: 24px;
+    .nav-left a:hover,
+    .nav-right a:hover {
+      color: var(--gold);
     }
 
-    .research-text p {
-      max-width: 620px;
-      color: #27393d;
-      font-size: 1.03rem;
-      margin-bottom: 18px;
-    }
-
-    .research-media {
-      display: grid;
-      gap: 18px;
-    }
-
-    .research-media img,
-    .research-media video {
-      width: 100%;
-      display: block;
-      border-radius: 22px;
-      box-shadow: 0 24px 50px rgba(0,0,0,0.13);
-      background: var(--mist);
-    }
-
-    .media-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .media-pair img {
-      height: 320px;
-      object-fit: cover;
-    }
-
-    .tagline {
-      margin-top: 26px;
-      display: inline-block;
-      color: var(--deep-teal);
-      border-left: 4px solid var(--teal);
-      padding-left: 16px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .summary-strip {
-      padding: 66px 7vw;
-      background: var(--mist);
+    .brand {
       text-align: center;
     }
 
-    .summary-strip h2 {
-      font-size: clamp(2rem, 3vw, 3.4rem);
+    .brand img {
+      width: min(420px, 40vw);
+      margin: 0 auto 10px;
+    }
+
+    .brand-subtitle {
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 900px;
+      margin-top: 30px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 7vw, 7.6rem);
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: rgba(244,234,216,0.82);
+      font-size: 1.2rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-quote {
+      position: absolute;
+      right: 9vw;
+      bottom: 110px;
+      z-index: 3;
+      max-width: 320px;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .intro-band {
+      display: grid;
+      grid-template-columns: 0.9fr 1.2fr 1fr 1.1fr;
+      min-height: 430px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--night);
+    }
+
+    .intro-text {
+      padding: 52px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .intro-text h2 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .intro-text p {
+      color: var(--muted);
+      font-size: 1.3rem;
+      margin-bottom: 26px;
+    }
+
+    .intro-band img {
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.88;
+      border-right: 1px solid var(--line);
+    }
+
+    .pillars {
+      padding: 76px 7vw;
+      background:
+        linear-gradient(rgba(5,8,8,0.94), rgba(5,8,8,0.94)),
+        url("image/research/research5.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 58px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2.4rem, 4vw, 4.8rem);
       margin-bottom: 22px;
     }
 
-    .summary-strip p {
-      max-width: 780px;
-      margin: 0 auto;
-      color: #27393d;
+    .section-header p {
+      color: var(--muted);
       font-size: 1.05rem;
     }
 
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .pillar {
+      background: rgba(8,17,17,0.92);
+      padding: 38px 30px;
+      min-height: 330px;
+    }
+
+    .pillar span {
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    .pillar h3 {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+    }
+
+    .pillar p {
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .feature {
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--black);
+      border-top: 1px solid var(--line);
+    }
+
+    .feature-text {
+      padding: 95px 8vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .feature-text h2 {
+      font-size: clamp(2.5rem, 4.3vw, 5rem);
+      margin-bottom: 28px;
+    }
+
+    .feature-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 650px;
+    }
+
+    .feature-media {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    .feature-media img,
+    .feature-media video {
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.88;
+      transition: 0.8s ease;
+    }
+
+    .feature:hover .feature-media img,
+    .feature:hover .feature-media video {
+      transform: scale(1.035);
+    }
+
+    .feature.reverse .feature-text {
+      order: 2;
+    }
+
+    .feature.reverse .feature-media {
+      order: 1;
+    }
+
+    .video-caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      padding: 20px 22px;
+      background: rgba(5,8,8,0.68);
+      border: 1px solid var(--line);
+      color: rgba(244,234,216,0.86);
+      font-size: 1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .research-block {
+      padding: 110px 7vw;
+      background: var(--deep);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-block::before {
+      content: "RESEARCH";
+      position: absolute;
+      right: -3vw;
+      top: 42px;
+      color: rgba(244,234,216,0.035);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 12vw;
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+      align-items: start;
+    }
+
+    .research-intro h2 {
+      font-size: clamp(2.4rem, 4vw, 4.6rem);
+      margin-bottom: 28px;
+    }
+
+    .research-intro p {
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 640px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project {
+      border: 1px solid var(--line);
+      background: rgba(5,8,8,0.62);
+    }
+
+    .project img {
+      height: 240px;
+      object-fit: cover;
+      opacity: 0.88;
+    }
+
+    .project-content {
+      padding: 26px;
+    }
+
+    .project-content span {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .project-content h3 {
+      font-size: 1.65rem;
+      margin: 12px 0 14px;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .gallery {
+      padding: 96px 7vw;
+      background: var(--night);
+      border-top: 1px solid var(--line);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .gallery-grid img {
+      height: 280px;
+      object-fit: cover;
+      opacity: 0.88;
+      transition: 0.35s ease;
+    }
+
+    .gallery-grid img:hover {
+      opacity: 1;
+      transform: scale(1.015);
+    }
+
+    .closing {
+      min-height: 520px;
+      padding: 110px 7vw;
+      background:
+        linear-gradient(rgba(5,8,8,0.42), rgba(5,8,8,0.94)),
+        url("image/research/research12.jpg");
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .closing h2 {
+      font-size: clamp(3rem, 6vw, 7rem);
+      max-width: 1050px;
+      margin: 0 auto 28px;
+    }
+
+    .closing p {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      color: rgba(244,234,216,0.82);
+      font-size: 1.08rem;
+    }
+
     footer {
-      background: linear-gradient(90deg, #003f4c, #006b78);
-      color: white;
-      padding: 28px 7vw;
+      padding: 32px 7vw;
+      background: #030505;
+      color: var(--muted);
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.9rem;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 900px) {
-      .page-hero {
-        padding: 26px 6vw 70px;
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 9999;
+      padding: 32px;
+    }
+
+    .lightbox.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+      border-radius: 8px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 28px;
+      right: 42px;
+      color: white;
+      font-size: 48px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-weight: 300;
+      line-height: 1;
+      z-index: 10000;
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      max-width: 80vw;
+      color: rgba(244,234,216,0.78);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    img.lightbox-enabled {
+      cursor: zoom-in;
+    }
+
+    @media (max-width: 1000px) {
+      .navbar {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        text-align: center;
       }
 
-      .brand img {
-        height: 240px;
+      .nav-left,
+      .nav-right {
+        justify-self: center;
+        padding-top: 0;
       }
 
-      .nav-links {
-        margin-top: -8px;
+      .nav-left {
+        order: 2;
       }
 
-      .page-hero video.hero-bg {
-        opacity: 0.28;
-        width: 70vw;
-        right: -18vw;
-        top: 62%;
+      .brand {
+        order: 1;
       }
 
-      .research-section,
-      .research-section.reverse {
+      .nav-right {
+        order: 3;
+      }
+
+      .hero-quote {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 52px;
+      }
+
+      .intro-band,
+      .pillar-grid,
+      .feature,
+      .feature.reverse,
+      .research-grid {
         grid-template-columns: 1fr;
       }
 
-      .research-section.reverse .research-text,
-      .research-section.reverse .research-media {
+      .feature.reverse .feature-text,
+      .feature.reverse .feature-media {
         order: initial;
       }
 
-      .media-pair {
+      .intro-band img {
+        height: 360px;
+      }
+
+      .project-grid {
         grid-template-columns: 1fr;
       }
 
-      .media-pair img {
-        height: auto;
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 620px) {
+      .hero {
+        padding: 26px 6vw 64px;
+      }
+
       .brand img {
-        height: 190px;
+        width: 260px;
       }
 
-      .nav-links {
-        gap: 24px;
-        font-size: 0.78rem;
+      .brand-subtitle {
+        font-size: 0.62rem;
       }
 
-      .page-hero h1 {
-        font-size: 2.8rem;
+      .hero h1 {
+        font-size: 3.2rem;
       }
 
-      .research-section {
-        padding: 64px 6vw;
+      .intro-text,
+      .feature-text,
+      .research-block,
+      .gallery,
+      .closing {
+        padding-left: 6vw;
+        padding-right: 6vw;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+
+      .lightbox .close {
+        top: 18px;
+        right: 24px;
+        font-size: 40px;
       }
     }
   </style>
@@ -293,201 +659,309 @@
 
 <body>
 
-  <header class="page-hero">
-
-    <video class="hero-bg" autoplay muted loop playsinline>
-      <source src="videos/new_moth_screen_animation.mp4" type="video/mp4" />
-    </video>
-
+  <header class="hero">
     <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">Home</a>
+      </div>
+
       <a href="index.html" class="brand">
-        <img src="logo.png" alt="Mansi Mungee logo" />
+        <img src="logo.png" alt="MOTH Lab logo" class="no-lightbox" />
+        <div class="brand-subtitle">Insects · Ecology · Movement</div>
       </a>
 
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="research.html">Research</a>
+      <div class="nav-right">
         <a href="contact.html">Contact</a>
       </div>
     </nav>
 
-    <p class="eyebrow">Research</p>
+    <div class="hero-content">
+      <p class="eyebrow">Research at MOTH Lab</p>
+      <h1>Revealing the hidden ecology of insects.</h1>
+      <p>
+        Our research connects moth diversity, ecological traits, colour, movement,
+        weather radar and artificial intelligence to understand how insects live,
+        move and respond to environmental change.
+      </p>
+      <a href="#research-areas" class="btn">Explore research areas →</a>
+    </div>
 
-    <h1>Insect biodiversity, traits and movement across changing landscapes.</h1>
-
-    <p class="hero-intro">
-      My research combines field ecology, imaging, morphology, remote sensing and
-      computational methods to study insects across scales: from wing traits and
-      colour patterns to aerial movement observed by weather radar.
-    </p>
-
+    <div class="hero-quote">
+      “Some ecological patterns are too small to see, until we change the scale of observation.”
+    </div>
   </header>
 
   <main>
 
-    <section class="research-section">
-      <div class="research-text">
-        <p class="eyebrow">Arunachal moth systems</p>
-        <h2>Moth diversity, colour and community assembly</h2>
+    <section class="intro-band">
+      <div class="intro-text">
+        <p class="eyebrow">Our questions</p>
+        <h2>How do insects move, adapt and persist in changing landscapes?</h2>
         <p>
-          A major part of my work focuses on moth communities in Arunachal Pradesh,
-          especially along strong elevational and climatic gradients. I study how
-          diversity, colour patterns, wing traits and ecological strategies vary
-          across landscapes and among lineages.
+          We ask how insects are shaped by mountains, forests, climate, predators,
+          atmosphere and human-modified environments.
         </p>
-        <p>
-          These projects combine long-term field collections with community ecology,
-          phylogenetics, trait measurement and comparative analyses. The broader
-          goal is to understand how environmental filtering, biotic interactions
-          and evolutionary history shape insect communities.
-        </p>
-        <span class="tagline">Community ecology · Colour · Phylogenetics</span>
       </div>
 
-      <div class="research-media media-pair">
-        <img src="image/research/moths.jpg" alt="Moth diversity from Arunachal Pradesh" />
-        <img src="image/research/moth_schematic.jpg" alt="Moth research schematic" />
+      <img src="image/research/research2.jpg" alt="Moth diversity in Himalayan forests" />
+      <img src="image/research/research3.jpg" alt="Field ecology and insect monitoring" />
+      <img src="image/research/research4.jpg" alt="Remote sensing and ecological data" />
+    </section>
+
+    <section id="research-areas" class="pillars">
+      <div class="section-header">
+        <p class="eyebrow">Research themes</p>
+        <h2>Field ecology, remote sensing and computation.</h2>
+        <p>
+          MOTH Lab works across scales: from the colour and architecture of moth wings
+          to the atmospheric movement of insects detected by weather radar.
+        </p>
+      </div>
+
+      <div class="pillar-grid">
+        <div class="pillar">
+          <span>01</span>
+          <h3>Moth biodiversity</h3>
+          <p>
+            We document moth communities across Himalayan landscapes to understand
+            species diversity, ecological turnover and responses to environmental gradients.
+          </p>
+        </div>
+
+        <div class="pillar">
+          <span>02</span>
+          <h3>Traits and phenotypes</h3>
+          <p>
+            We measure morphology, colour, wing architecture and pattern to study
+            how insect form reflects ecological function and evolutionary pressure.
+          </p>
+        </div>
+
+        <div class="pillar">
+          <span>03</span>
+          <h3>Radar ecology</h3>
+          <p>
+            We repurpose weather radar to detect nocturnal emergence, aerial insect
+            abundance and biological movement through the lower atmosphere.
+          </p>
+        </div>
+
+        <div class="pillar">
+          <span>04</span>
+          <h3>AI for monitoring</h3>
+          <p>
+            We develop image-processing and machine-learning workflows for scalable,
+            repeatable and visually rich biodiversity monitoring.
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="research-section reverse">
-      <div class="research-text">
-        <p class="eyebrow">Computational ecology</p>
-        <h2>Image processing, feature extraction and AI</h2>
+    <section class="feature">
+      <div class="feature-text">
+        <p class="eyebrow">Moth screen in action</p>
+        <h2>Look at the magic unfold.</h2>
         <p>
-          I use image processing and machine-learning approaches to extract
-          biological information from large image datasets. These methods help
-          quantify colour, pattern, shape and other visual features that are
-          difficult to measure manually at scale.
+          In the tropical evergreen forests of the eastern Himalayas, the night
+          changes as soon as the lights are switched on. Moths, beetles and countless
+          other insects arrive from the dark, revealing a hidden world of movement,
+          colour and diversity.
         </p>
         <p>
-          This work is especially useful for building reproducible trait pipelines,
-          comparing thousands of individuals and linking image-derived features to
-          ecological gradients. I am interested in developing tools that make insect
-          monitoring faster, more scalable and more objective.
+          These field nights form the foundation of our work: documenting biodiversity,
+          measuring traits and building long-term records of insects in rapidly
+          changing landscapes.
         </p>
-        <span class="tagline">Computer vision · Feature extraction · AI</span>
       </div>
 
-      <div class="research-media">
-        <img src="image/research/image_processing.jpg" alt="Image processing and feature extraction workflow" />
-      </div>
-    </section>
-
-    <section class="research-section">
-      <div class="research-text">
-        <p class="eyebrow">Traits and morphology</p>
-        <h2>Morphological and colorimetric traits</h2>
-        <p>
-          I measure insect morphology and colour to understand how traits are linked
-          to ecology, behaviour and environmental conditions. These measurements
-          include wing geometry, body size, pigmentation, reflectance and pattern
-          structure.
-        </p>
-        <p>
-          Photogrammetry and standardized imaging allow traits to be measured
-          consistently across individuals and species. These trait datasets can then
-          be used to test hypotheses about flight, thermoregulation, crypsis,
-          elevation and evolutionary diversification.
-        </p>
-        <span class="tagline">Morphology · Colour metrics · Trait ecology</span>
-      </div>
-
-      <div class="research-media">
-        <img src="image/research/photogrammetry.JPG" alt="Photogrammetry setup for measuring insect traits" />
+      <div class="feature-media">
+        <video src="image/research/mothscreen_animation.mp4" autoplay muted loop playsinline controls></video>
+        <div class="video-caption">
+          Moth screen in action — look at the magic unfold as soon as the lights come on.
+        </div>
       </div>
     </section>
 
-    <section class="research-section reverse">
-      <div class="research-text">
+    <section class="feature reverse">
+      <div class="feature-text">
         <p class="eyebrow">Radar ecology</p>
-        <h2>Weather radar and aerial insect abundance</h2>
+        <h2>Invisible movement, visible signatures.</h2>
         <p>
-          Weather radar networks can detect large-scale biological movement in the
-          atmosphere, including insects, birds and other aerial organisms. My radar
-          work uses these systems to quantify insect abundance and movement across
-          space and time.
+          We may not notice the nightly emergence and take-off of insects, but weather
+          radar can detect their movement as biological signatures in the atmosphere.
         </p>
         <p>
-          In the UK, this approach has been used to estimate aerial insect biomass
-          and examine broad-scale temporal and spatial variation. Such work shows
-          how meteorological infrastructure can be repurposed for biodiversity
-          monitoring at national scales.
+          Around dusk, the radar begins to pick up bursts of reflectivity as insects
+          rise into the air. In this animation, notice the sudden increase in
+          reflectivity signatures around 6:34 PM — a hidden ecological event becoming
+          visible through remote sensing.
         </p>
-        <span class="tagline">Weather radar · Aerial biomass · Monitoring</span>
       </div>
 
-      <div class="research-media">
-        <img src="image/research/uk_map_insect_abundance.png" alt="UK map of insect abundance estimated from radar" />
-      </div>
-    </section>
-
-    <section class="research-section">
-      <div class="research-text">
-        <p class="eyebrow">India radar work</p>
-        <h2>Nocturnal insect emergence near Bhopal</h2>
-        <p>
-          I am developing radar-based methods to study aerial insect movement in
-          India using weather radar observations near Bhopal. The Silkheda radar
-          captures the dusk emergence of nocturnal insects over agricultural fields,
-          providing a rare view of biological activity in the lower atmosphere.
-        </p>
-        <p>
-          This work aims to identify when, where and under what atmospheric
-          conditions insects enter the airspace. It also provides a foundation for
-          building long-term insect monitoring systems using existing radar networks.
-        </p>
-        <span class="tagline">Silkheda radar · Dusk emergence · Bhopal</span>
-      </div>
-
-      <div class="research-media">
-        <video controls muted loop playsinline>
-          <source src="image/research/Silkheda_animation.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div class="feature-media">
+        <video src="image/research/radar_animation.mp4" autoplay muted loop playsinline controls></video>
+        <div class="video-caption">
+          Radar reveals the mass emergence and take-off of insects around dusk.
+        </div>
       </div>
     </section>
 
-    <section class="research-section reverse">
-      <div class="research-text">
-        <p class="eyebrow">Monsoon and meteorology</p>
-        <h2>Indian weather radar, monsoon dynamics and aerial movement</h2>
-        <p>
-          India’s weather radar network provides a major opportunity to study
-          ecological movement in relation to monsoon meteorology. I am interested
-          in how wind fields, rainfall, atmospheric stability and seasonal weather
-          systems affect the timing and intensity of aerial movement.
-        </p>
-        <p>
-          This research connects radar ecology with atmospheric science by asking
-          how biological movement is structured by the physical environment. It can
-          help build a clearer picture of insect activity across agricultural,
-          forested and urban landscapes in India.
-        </p>
-        <span class="tagline">Monsoon · Meteorology · Radar networks</span>
-      </div>
+    <section class="research-block">
+      <div class="research-grid">
+        <div class="research-intro">
+          <p class="eyebrow">Current directions</p>
+          <h2>Connecting organisms, landscapes and atmosphere.</h2>
+          <p>
+            Our research programme is built around a simple idea: insects are everywhere,
+            but they are rarely monitored at the scales needed to understand ecological
+            change.
+          </p>
+          <p>
+            By combining field surveys, imaging, radar archives, environmental data
+            and computational tools, we aim to make hidden biodiversity more visible,
+            measurable and actionable.
+          </p>
+        </div>
 
-      <div class="research-media media-pair">
-        <img src="image/research/india_weather_radar_map.tiff" alt="Map of Indian weather radar network" />
-        <img src="image/research/india_atmos_effect_on_aerial_movement.tiff" alt="Atmospheric effects on aerial movement in India" />
+        <div class="project-grid">
+          <article class="project">
+            <img src="image/research/research6.jpg" alt="Himalayan moth diversity research" />
+            <div class="project-content">
+              <span>Field ecology</span>
+              <h3>Himalayan moth communities</h3>
+              <p>
+                Studying how moth diversity changes across elevation, habitat,
+                seasonality and environmental gradients.
+              </p>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="image/research/research7.jpg" alt="Moth wing traits and colour pattern research" />
+            <div class="project-content">
+              <span>Traits</span>
+              <h3>Colour, wings and ecological function</h3>
+              <p>
+                Measuring wing shape, morphology, colour and pattern to understand
+                how phenotypes respond to ecological pressures.
+              </p>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="image/research/research8.jpg" alt="Weather radar ecology and aerial insect movement" />
+            <div class="project-content">
+              <span>Remote sensing</span>
+              <h3>Aerial insect movement</h3>
+              <p>
+                Using weather radar to detect insect emergence, abundance and movement
+                through the atmosphere.
+              </p>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="image/research/research9.jpg" alt="Artificial intelligence and image processing for biodiversity monitoring" />
+            <div class="project-content">
+              <span>Computation</span>
+              <h3>AI-enabled biodiversity monitoring</h3>
+              <p>
+                Building workflows for image processing, feature extraction and
+                scalable ecological observation.
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="summary-strip">
-      <h2>Across scales, from wings to weather systems.</h2>
+    <section class="gallery">
+      <div class="section-header">
+        <p class="eyebrow">Research visuals</p>
+        <h2>Images from the field, lab and sky.</h2>
+        <p>
+          A visual archive of the places, organisms, instruments and data streams
+          that shape the research at MOTH Lab.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <img src="image/research/research1.jpg" alt="MOTH Lab research landscape" />
+        <img src="image/research/research2.jpg" alt="Moth diversity in the eastern Himalayas" />
+        <img src="image/research/research3.jpg" alt="Field site for insect monitoring" />
+        <img src="image/research/research4.jpg" alt="Ecological data and field research" />
+        <img src="image/research/research5.jpg" alt="Remote sensing for insect ecology" />
+        <img src="image/research/research6.jpg" alt="Himalayan moth community research" />
+        <img src="image/research/research7.jpg" alt="Wing traits and colour pattern research" />
+        <img src="image/research/research8.jpg" alt="Radar signatures of biological movement" />
+        <img src="image/research/research9.jpg" alt="AI and image processing for biodiversity" />
+        <img src="image/research/research10.jpg" alt="MOTH Lab fieldwork and monitoring" />
+        <img src="image/research/research11.jpg" alt="Insect ecology research image" />
+        <img src="image/research/research12.jpg" alt="MOTH Lab research visual" />
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">Work with us</p>
+      <h2>Research that begins after dark, and scales into the sky.</h2>
       <p>
-        Together, these projects ask how insects are shaped by their environments
-        and how new technologies can make their hidden diversity and movement more
-        visible.
+        MOTH Lab welcomes students, collaborators and partners interested in insects,
+        ecology, remote sensing, AI, biodiversity monitoring and the hidden movement
+        of life through the atmosphere.
       </p>
+      <a href="contact.html" class="btn">Get in touch →</a>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2026 Mansi Mungee</p>
-    <p>Ecology · Remote Sensing · AI</p>
+    <p>© 2026 MOTH Lab</p>
+    <p>Insects · Ecology · Movement</p>
   </footer>
+
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-img" src="" alt="" />
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeBtn = document.querySelector(".lightbox .close");
+
+    document.querySelectorAll("img:not(.no-lightbox)").forEach((img) => {
+      img.classList.add("lightbox-enabled");
+
+      img.addEventListener("click", () => {
+        lightbox.classList.add("show");
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || "";
+        lightboxCaption.textContent = img.alt || "";
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+      lightboxImg.src = "";
+      lightboxCaption.textContent = "";
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
